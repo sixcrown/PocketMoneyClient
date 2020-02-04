@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,11 +11,19 @@ import { SigninComponent } from './logging_in/signin/signin.component';
 import { SignupComponent } from './logging_in/signup/signup.component';
 import { UserProfileComponent } from './logging_in/user-profile/user-profile.component';
 import { AuthGuard } from "./shared/auth.guard";
+import { HomeComponent } from './homescreen/home/home.component';
+import { AddChildComponent } from './user/add-child/add-child.component';
+import { GetMyChildrenComponent } from './user/get-my-children/get-my-children.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     SignupComponent,
+    UserProfileComponent,
+    HomeComponent,
+    AddChildComponent,
+    GetMyChildrenComponent,
     UserProfileComponent
    // AppRoutingModule,
   ],
@@ -27,6 +35,10 @@ import { AuthGuard } from "./shared/auth.guard";
     AppRoutingModule,
     RouterModule.forRoot([
       {
+        path: '',
+        component: SigninComponent
+      },
+      {
         path: 'log-in',
         component: SigninComponent
       },
@@ -34,7 +46,16 @@ import { AuthGuard } from "./shared/auth.guard";
         path: 'sign-up',
         component: SignupComponent
       },
-      { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
+      { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+      {
+        path: 'home',
+        component: HomeComponent, canActivate :[AuthGuard]
+      },
+      {
+      path: 'myChildren',
+      component: GetMyChildrenComponent, canActivate:[AuthGuard]
+    }
+
     ]),
 
   ],

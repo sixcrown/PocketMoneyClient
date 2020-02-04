@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './../../shared/auth.service';
+import { User } from '../../shared/user';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,15 +9,14 @@ import { AuthService } from './../../shared/auth.service';
 })
 
 export class UserProfileComponent implements OnInit {
-  currentUser: Object = {};
+  currentUser: User;
 
   constructor(
-    public authService: AuthService,
-    private actRoute: ActivatedRoute
+    public authService: AuthService
   ) {
-    let id = this.actRoute.snapshot.paramMap.get('id');
-    this.authService.getUserProfile(id).subscribe(res => {
-      this.currentUser = res.msg;
+    this.authService.getUserProfile().subscribe(res => {
+      console.log(res)
+      this.currentUser = res;
     })
   }
 

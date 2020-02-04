@@ -14,10 +14,7 @@ export class AuthService {
   json;
   endpoint: string = 'http://localhost:8080/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  httpOptions? ={
-    'Content-type': 'application/json',
-  }
-  currentUser = {};
+  currentUser:User;
 
   constructor(
     private http: HttpClient,
@@ -28,16 +25,6 @@ export class AuthService {
   // Sign-up
   signUp(user: User): Observable<any> {
     let api = `${this.endpoint}/addUser`
-
-    let body = JSON.stringify(user);
-    console.log(body)
-    // console.log(body)
-    // this.http.post<any>(api, body).toPromise().then((data:any) =>{
-    //   console.log(data)
-    //   console.log(data.json.test)
-    //   this.json = JSON.stringify(data.json)
-
-    // });
     return this.http.post<any>(api, user)
       .pipe(
         catchError(this.handleError)
@@ -46,21 +33,37 @@ export class AuthService {
   }
 
   // Sign-in
-  signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/authenticate`, user)
+  signIn(user: User){
+    this.http.post<any>(`${this.endpoint}/authenticate`, user)
       .subscribe((res: any) => {
-        //console.log("wchodzimy tutaj")
         localStorage.setItem('access_token', res.token)
         localStorage.token = Object.values(res)
-        // this.getUserProfile(res._id).subscribe((res) => {
-        //   this.currentUser = res;
-        //   //this.router.navigate(['user-profile/' + res.msg._id]);
-        // })
+        if(this.getToken()!==null){
+          console.log("udalo sie zalogowac")
+          let api = `${this.endpoint}/currentUser`;
+          this.http.get(api, { headers: this.headers }).subscribe((data: any)=>{
+            this.currentUser = data;
+            console.log(this.currentUser)
+          }
+          );
+          this.router.navigate(['home'])}
       })
+
   }
+  isAdmin(): boolean
+  {
+    let usergr = this.currentUser.userGroup;
+    if (usergr !== '2') return false;
+    else return true;
+  }
+
 
   getToken() {
     return localStorage.getItem('access_token');
+  }
+  getUserGroup()
+  {
+    return localStorage.getItem('user_group')
   }
 
   get isLoggedIn(): boolean {
@@ -76,8 +79,8 @@ export class AuthService {
   }
 
   // User profile
-  getUserProfile(id): Observable<any> {
-    let api = `${this.endpoint}/user-profile/${id}`;
+  getUserProfile(): Observable<any> {
+    let api = `${this.endpoint}/currentUser`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}

@@ -1,0 +1,41 @@
+<style>
+    body {
+        background: white }
+    section {
+        background: white;
+        color: white;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) }
+  </style>
+<section>
+<button routerLink="/addChildren" routerLinkActive="active">Dodaj Dziecko</button>
+<button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
+<button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button>
+<br>
+<table class="table table-trapped">
+    <thead>
+    <tr>
+        <th>Kieszonkowe:</th>
+        <th>Płeć:</th>
+        <th>Czy zamieszkuje z rodzicami?:</th>
+        <th>Miasto/województwo:</th>
+        <th>Poziom edukacji:</th>
+        <th>Opis:</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let Children of Childrens ">
+        <td>{{Children.pocketMoney}}</td>
+        <td>{{Children.sex}}</td>
+        <td>{{Children.isLivingWithParents }} </td>
+        <td>{{Children.administrationUnit}}</td>
+        <td>{{Children.educationLevel }} </td>
+        <td>{{Children.description }} </td>
+    </tr>
+</tbody>
