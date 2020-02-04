@@ -14,28 +14,54 @@
         transform: translate(-50%, -50%) }
   </style>
 <section>
-<button routerLink="/addChildren" routerLinkActive="active">Dodaj Dziecko</button>
-<button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
-<button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button>
+<button (click)="addChildrenClick()" type="button">Dodaj Dziecko</button>
+<div class="form-group"*ngIf="this.addChildrenClicker">
+    <label>Username</label>
+    <input type="username" class="form-control"  formControlName="username" placeholder="Username" required> 
+</div>
+<!-- <button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
+<button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button> -->
 <br>
 <table class="table table-trapped">
     <thead>
     <tr>
+        <th>Id dziecka:</th>
         <th>Kieszonkowe:</th>
         <th>Płeć:</th>
         <th>Czy zamieszkuje z rodzicami?:</th>
         <th>Miasto/województwo:</th>
         <th>Poziom edukacji:</th>
         <th>Opis:</th>
+        <th></th>
     </tr>
 </thead>
+<!-- <div class="form-group">
+    <label>Username</label>
+    <input type="username" class="form-control" formControlName="username" placeholder="Username" required> -->
+<!-- <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button> -->
 <tbody>
-    <tr *ngFor="let Children of Childrens ">
+    <tr *ngFor="let Children of Childrens;let i =index ">
+        <td>{{Children.id}} </td>
+            <!-- <script> 
+                var el_up = document.getElementById("i"); 
+                var el_down = document.getElementById("GFG_DOWN"); 
+                el_up.innerHTML = "Click on button to get ID"; 
+              
+                function GFG_click(clicked) { 
+                    el_down.innerHTML = "ID = "+clicked; 
+                }          
+            </script>   -->
+       
+
+
         <td>{{Children.pocketMoney}}</td>
         <td>{{Children.sex}}</td>
         <td>{{Children.isLivingWithParents }} </td>
         <td>{{Children.administrationUnit}}</td>
         <td>{{Children.educationLevel }} </td>
         <td>{{Children.description }} </td>
+        <td><button (click)="ChildDelete()" *ngIf="!this.childClicker" type="button">Usuń</button></td>
+        <td><button (click)="submit()" *ngIf="!this.childClicker" type="button">Edytuj</button></td>
     </tr>
 </tbody>
+<button (click)="submit()" *ngIf="!this.childClicker" type="button">Apply</button>
