@@ -15,14 +15,34 @@
   </style>
 <section>
 <button (click)="addChildrenClick()" type="button">Dodaj Dziecko</button>
-<div class="form-group"*ngIf="this.addChildrenClicker">
-    <label>Username</label>
-    <input type="username" class="form-control"  formControlName="username" placeholder="Username" required> 
-</div>
+<div class="auth-wrapper" *ngIf="this.addChildrenClicker">
+    <form class="form-signin" [formGroup]="signinForm">
+    <div class="form-group">
+    <label>pocketMoney</label>
+    <input type="pocketMoney" class="form-control"  formControlName="pocketMoney" placeholder="Kieszonkowe" required></div>
+    <div class="form-group">
+    <label>Opis</label>
+    <input type="username" class="form-control"  formControlName="description" placeholder="Opis" required> </div>
+    <div class="form-group">
+    <label for="sex">Płeć</label>
+    <select formControlName="sex" id="sex">
+    <option *ngFor="let sexs of sex;let i=index" [value]="sex[i].id"></option>
+    <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+    </select> </div> 
+    <div class="form-group">
+    <label>Czy żyje z rodzicami</label>
+    <input type="username" class="form-control"  formControlName="isLivingWithParents" placeholder="Czy żyje z rodzicami" required> </div>
+    <div class="form-group">
+    <label>Miasto/województwo</label>
+    <input type="username" class="form-control"  formControlName="administrationUnit" placeholder="Miasto/województwo" required> </div>
+    <div class="form-group">
+    <label>Stopień edukacji</label>
+    <input type="username" class="form-control"  formControlName="educationLevel" placeholder="Stopień edukacji" required> </div>
+    </form></div>
 <!-- <button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
 <button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button> -->
 <br>
-<table class="table table-trapped">
+<table class="table table-trapped"*ngIf="!this.addChildrenClicker">
     <thead>
     <tr>
         <th>Id dziecka:</th>
@@ -42,18 +62,6 @@
 <tbody>
     <tr *ngFor="let Children of Childrens;let i =index ">
         <td>{{Children.id}} </td>
-            <!-- <script> 
-                var el_up = document.getElementById("i"); 
-                var el_down = document.getElementById("GFG_DOWN"); 
-                el_up.innerHTML = "Click on button to get ID"; 
-              
-                function GFG_click(clicked) { 
-                    el_down.innerHTML = "ID = "+clicked; 
-                }          
-            </script>   -->
-       
-
-
         <td>{{Children.pocketMoney}}</td>
         <td>{{Children.sex}}</td>
         <td>{{Children.isLivingWithParents }} </td>
@@ -64,4 +72,6 @@
         <td><button (click)="submit()" *ngIf="!this.childClicker" type="button">Edytuj</button></td>
     </tr>
 </tbody>
-<button (click)="submit()" *ngIf="!this.childClicker" type="button">Apply</button>
+</table>
+<button (click)="submitNewKid()" *ngIf="this.addChildrenClicker" type="button">Apply</button>
+<button (click)="submitNewEditedKid()" *ngIf="this.childClicker" type="button">Apply</button>
