@@ -26,16 +26,22 @@
     <div class="form-group">
     <label for="sex">Płeć</label>
     <select formControlName="sex" id="sex">
-    <option *ngFor="let sexs of sex;let i=index" [value]="sex[i].id"></option>
+    <option *ngFor="let sexs of sex;let i=index" [value]="sex[i].id">{{sex[i].name}}</option>
     <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
     </select> </div> 
     <div class="form-group">
-    <label>Czy żyje z rodzicami</label>
-    <input type="username" class="form-control"  formControlName="isLivingWithParents" placeholder="Czy żyje z rodzicami" required> </div>
+    <label for="isLivingWithParents">Czy żyje z rodzicami?</label>
+    <select formControlName="isLivingWithParents" id="isLivingWithParents">
+    <option *ngFor="let option of options;let i=index" [value]="options[i].id">{{options[i].name}}</option>
+    <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+    </select> </div> 
     <div class="form-group">
-    <label>Miasto/województwo</label>
-    <input type="username" class="form-control"  formControlName="administrationUnit" placeholder="Miasto/województwo" required> </div>
-    <div class="form-group">
+        <label for="administrationUnit">Miasto/Województwo</label>
+        <select formControlName="administrationUnit" id="administrationUnit">
+        <option *ngFor="let administrationUnits of administrationUnit;let i=index" [value]="administrationUnit[i].name">{{administrationUnit[i].name}}</option>
+        <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+        </select> </div> 
+        <div class="form-group">
     <label>Stopień edukacji</label>
     <input type="username" class="form-control"  formControlName="educationLevel" placeholder="Stopień edukacji" required> </div>
     </form></div>

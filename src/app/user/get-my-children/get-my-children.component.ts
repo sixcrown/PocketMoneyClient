@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './../../shared/auth.service'
 import {Children} from '../../entities/Children'
 import { FormBuilder, FormGroup } from "@angular/forms";
+import {administrationUnits} from '../../entities/administrationUnits'
 @Component({
   selector: 'app-get-my-children',
   templateUrl: './get-my-children.component.html',
   styleUrls: ['./get-my-children.component.css']
 })
+
 export class GetMyChildrenComponent implements OnInit {
   signinForm: FormGroup;
   showDetails:boolean = false
@@ -15,6 +17,9 @@ export class GetMyChildrenComponent implements OnInit {
   indexClicked:string
   childClicker:boolean = false
   sex = []
+  options =[]
+  administrationUnit:administrationUnits[]
+
   constructor(public authService: AuthService,private http: HttpClient,    public fb: FormBuilder,) 
 {    
     this.signinForm = this.fb.group(
@@ -26,18 +31,24 @@ export class GetMyChildrenComponent implements OnInit {
     administrationUnit:[''],
     educationLevel:['']
       })
+    this.getAdministrationUnits()
     this.sex = this.getSexs()
-    this.signinForm.controls.sex.patchValue(this.sex[0].id)
+    this.signinForm.controls.sex.patchValue(this.sex[0].name)
+    this.options = this.getOption();
+    this.signinForm.controls.isLivingWithParents.patchValue(this.options[0].id)
+   // this.signinForm.controls.administrationUnit.patchValue(this.administrationUnit.id)
     // of(this.getSex()).subscribe(sex => {
     //     this.sex = sex;
     //     this.signinForm.controls.orders.patchValue(this.sex[0].id);
     //   });
-}
+} 
   readonly urlGetChildren = 'http://localhost:8080/api/getMyChildren';
   readonly urlAddChild = 'http://localhost:8080/api/addChild';
+  readonly ulrGetAdministrationUnits = 'http://localhost:8080/api/getAdministrationUnits'
   Childrens:Children[]
   ngOnInit() {
     this.getMyChildren()
+    this.getAdministrationUnits();
   }
   getMyChildren()
   {
@@ -66,19 +77,28 @@ export class GetMyChildrenComponent implements OnInit {
   submitNewKid()
   {
     this.addChildrenClicker = false;
-    //console.log(this.signinForm.value)
-    //console.log(this.signinForm.get('isLivingWithParents'));
-    this.http.post(this.urlAddChild,this.signinForm.value).subscribe((data:any)=>{
-    (error)=>console.log(error)});
+    this.http.post(this.urlAddChild,this.signinForm.value).subscribe((data:any)=>{    
+    (error)=>console.log(data)});
+    this.getMyChildren()
   }
   getSexs() {
     return [
-      { id: '1', name: 'order 1' },
-      { id: '2', name: 'order 2' },
-      { id: '3', name: 'order 3' },
-      { id: '4', name: 'order 4' }
+      { id: 'Mężczyzna', name: 'Mężczyzna' },
+      { id: 'Kobieta', name: 'Kobieta' }
     ];
   }
-
+  getOption()
+  {
+    return [
+      { id: 'false', name: 'nie' },
+      { id: 'true', name: 'tak' }]
+  }
+getAdministrationUnits()
+{
+  this.http.get(this.ulrGetAdministrationUnits).subscribe((data:any)=>{
+    this.administrationUnit=data
+    console.log(this.administrationUnit)
+  });
+}
   
 }
