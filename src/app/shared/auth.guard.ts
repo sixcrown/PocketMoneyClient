@@ -21,11 +21,11 @@ export class AuthGuard implements CanActivate {
       window.alert("Please log-in first");
       this.router.navigate(['log-in'])
     }
-    // if (this.authService.isLoggedIn === true) {
-    //   if(this.authService.isAdmin() !=true){
-    //   window.alert("Access not allowed!");
-    //   this.router.navigate(['acess-denied'])}
-    // }
+    if(this.authService.isAdminLogged &&next.url.toString()!='home')
+    {
+      window.alert("Please log-in as default user");
+      this.router.navigate(['getUsers'])
+    }
     return true;
   }
 }

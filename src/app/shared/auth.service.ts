@@ -43,23 +43,22 @@ export class AuthService {
           let api = `${this.endpoint}/currentUser`;
           this.http.get(api, { headers: this.headers }).subscribe((data: any)=>{
             this.currentUser = data;
-            console.log(this.currentUser)
+            if(this.currentUser.userGroup =='ADMIN') 
+            {
+              console.log('ustawiamy admina')
+              localStorage.setItem('ADMIN', res.ADMIN)
+            }
           }
           );
-          this.router.navigate(['home'])}
+            this.router.navigate(['home'])}
       })
 
   }
-  isAdmin(): boolean
-  {
-    let usergr = this.currentUser.userGroup;
-    if (usergr !== '2') return false;
-    else return true;
-  }
-
-
   getToken() {
     return localStorage.getItem('access_token');
+  }
+  getAdmin() {
+    return localStorage.getItem('ADMIN');
   }
   getUserGroup()
   {
@@ -70,9 +69,15 @@ export class AuthService {
     let authToken = localStorage.getItem('access_token');
     return (authToken !== null) ? true : false;
   }
+  get isAdminLogged(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    let admin = localStorage.getItem('ADMIN');
+    return (authToken !== null&&admin!==null) ? true : false;
+  }
 
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('ADMIN')
     if (removeToken == null) {
       this.router.navigate(['log-in']);
     }
