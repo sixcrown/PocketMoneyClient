@@ -5,6 +5,7 @@
     <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/home">Home</a>
     <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/user-profile">Mój profil</a>
     <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/myChildren">Moje dzieci</a>
+    <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/GetStatisticsAverage">Statystyki</a>
     <a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/log-in">Sign
       in</a>
 

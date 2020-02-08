@@ -1,0 +1,31 @@
+<style>
+    body {
+        background: white }
+    section {
+        background: white;
+        color: white;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) }
+  </style>
+  <section>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <table class="table table-trapped">
+        <thead>
+        <tr>
+            <th>Miasto/województwo</th>
+            <th>Kieszonkowe:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let stat of stats">
+            <td>{{stat.name}} </td>
+            <td>{{stat.value}}</td>
+        </tr>
+    </tbody>
+    </table>

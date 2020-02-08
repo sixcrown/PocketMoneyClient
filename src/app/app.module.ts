@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,6 +13,7 @@ import { AuthGuard } from "./shared/auth.guard";
 import { HomeComponent } from './homescreen/home/home.component';
 import { AddChildComponent } from './user/add-child/add-child.component';
 import { GetMyChildrenComponent } from './user/get-my-children/get-my-children.component';
+import {GetStatisticsAverageComponent} from './statistics/get-statistics-average/get-statistics-average.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { GetMyChildrenComponent } from './user/get-my-children/get-my-children.c
     HomeComponent,
     AddChildComponent,
     GetMyChildrenComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    GetStatisticsAverageComponent
    // AppRoutingModule,
   ],
   imports: [
@@ -54,7 +55,12 @@ import { GetMyChildrenComponent } from './user/get-my-children/get-my-children.c
       {
       path: 'myChildren',
       component: GetMyChildrenComponent, canActivate:[AuthGuard]
-    }
+    },
+      {
+      path: "GetStatisticsAverage",
+      component:GetStatisticsAverageComponent, canActivate:[AuthGuard]
+      }
+
 
     ]),
 

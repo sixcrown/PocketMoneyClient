@@ -4,6 +4,8 @@ import { AuthService } from './../../shared/auth.service'
 import {Children} from '../../entities/Children'
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {administrationUnits} from '../../entities/administrationUnits'
+import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 @Component({
   selector: 'app-get-my-children',
   templateUrl: './get-my-children.component.html',
@@ -74,11 +76,14 @@ export class GetMyChildrenComponent implements OnInit {
   {
 
   }
-  submitNewKid()
+  submitNewKid()//:Observable<any>
   {
+    // return this.http.post(this.urlAddChild,this.signinForm.value)
+    // .pipe(map(reponse=>){    
+    //   (Error)=>window.alert("Nie udalo sie dodac dziecka")};
     this.addChildrenClicker = false;
     this.http.post(this.urlAddChild,this.signinForm.value).subscribe((data:any)=>{    
-    (error)=>console.log(data)});
+    (error)=>window.alert("Nie udalo sie dodac dziecka")});
     this.getMyChildren()
   }
   getSexs() {
