@@ -4,6 +4,7 @@ import { AuthService } from './../../shared/auth.service'
 import {Children} from '../../entities/Children'
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {administrationUnits} from '../../entities/administrationUnits'
+import {educationLevels} from '../../entities/educationLevels'
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 @Component({
@@ -21,6 +22,7 @@ export class GetMyChildrenComponent implements OnInit {
   sex = []
   options =[]
   administrationUnit:administrationUnits[]
+  educationLevel:educationLevels[]
 
   constructor(public authService: AuthService,private http: HttpClient,    public fb: FormBuilder,) 
 {    
@@ -38,25 +40,23 @@ export class GetMyChildrenComponent implements OnInit {
     this.signinForm.controls.sex.patchValue(this.sex[0].name)
     this.options = this.getOption();
     this.signinForm.controls.isLivingWithParents.patchValue(this.options[0].id)
-   // this.signinForm.controls.administrationUnit.patchValue(this.administrationUnit.id)
-    // of(this.getSex()).subscribe(sex => {
-    //     this.sex = sex;
-    //     this.signinForm.controls.orders.patchValue(this.sex[0].id);
-    //   });
 } 
   readonly urlGetChildren = 'http://localhost:8080/api/getMyChildren';
   readonly urlAddChild = 'http://localhost:8080/api/addChild';
   readonly ulrGetAdministrationUnits = 'http://localhost:8080/api/getAdministrationUnits'
+  readonly urlGetEducationLevels = 'http://localhost:8080/api/getEducationLevels'
   Childrens:Children[]
   ngOnInit() {
     this.getMyChildren()
     this.getAdministrationUnits();
+    this.getEducationLevels();
+    this.signinForm.controls.administrationUnit.patchValue('dolnoslaskie')
+    this.signinForm.controls.educationLevel.patchValue('Podstawowka')
   }
   getMyChildren()
   {
     this.http.get(this.urlGetChildren).subscribe((data:any)=>{
       this.Childrens=data
-      console.log(this.Childrens)
     });
   }
   addChildrenClick()
@@ -103,6 +103,12 @@ getAdministrationUnits()
   this.http.get(this.ulrGetAdministrationUnits).subscribe((data:any)=>{
     this.administrationUnit=data
     console.log(this.administrationUnit)
+  });
+}
+getEducationLevels()
+{
+  this.http.get(this.urlGetEducationLevels).subscribe((data:any)=>{
+    this.educationLevel = data;
   });
 }
   
