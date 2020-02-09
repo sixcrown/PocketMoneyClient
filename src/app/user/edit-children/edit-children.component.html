@@ -1,9 +1,7 @@
 <div class="center">
     <div class="container">
-        <button (click)="addChildrenClick()" class="btn btn-secondary" type="button">
-            Dodaj Dziecko
-        </button>
-        <div class="auth-wrapper" *ngIf="this.addChildrenClicker">
+        <button [routerLink] ="['/myChildren']" class="btn btn-secondary" routerLinkActive="active">Back</button>
+        <div class="auth-wrapper">
             <form class="form-signin" [formGroup]="signinForm">
                 <div class="row">
                     <div class="col-sm">
@@ -73,56 +71,9 @@
                 </div>
             </form>
         </div>
-        <button (click)="submitNewKid()" class="btn btn-primary" *ngIf="this.addChildrenClicker" type="button">
+        <button (click)="submit()" class="btn btn-primary" type="button">
             Apply
         </button>
     </div>
 
-    <div class="container">
-        <table class="table table-trapped" *ngIf="!this.addChildrenClicker">
-            <thead>
-                <tr>
-                    <th>Id dziecka:</th>
-                    <th>Kieszonkowe:</th>
-                    <th>Płeć:</th>
-                    <th>Czy zamieszkuje z rodzicami?:</th>
-                    <th>Miasto/województwo:</th>
-                    <th>Poziom edukacji:</th>
-                    <th>Opis:</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <!-- <div class="form-group">
-            <label>Username</label>
-            <input type="username" class="form-control" formControlName="username" placeholder="Username" required> -->
-            <!-- <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button> -->
-
-            <tbody>
-                <tr *ngFor="let Children of Childrens" (click)="onSelect(Children)">
-                    <td>{{ Children.id }}</td>
-                    <td>{{ Children.pocketMoney }}</td>
-                    <td>{{ Children.sex }}</td>
-                    <td>{{ Children.isLivingWithParents }}</td>
-                    <td>{{ Children.administrationUnit }}</td>
-                    <td>{{ Children.educationLevel }}</td>
-                    <td>{{ Children.description }}</td>
-                    <td>
-                        <button class="btn btn-danger" (click)="ChildDelete(Children.id)" *ngIf="!this.childClicker"
-                            type="button">
-                            Usuń
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-warning" [routerLink] ="['/editChildren', Children.id]" routerLinkActive="active" *ngIf="!this.childClicker" type="button">
-                            Edytuj
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- <button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
-    <button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button> -->
-    <!-- <button class="btn btn-secondary" (click)="submitNewEditedKid()" *ngIf="this.childClicker" type="button">Apply</button class="btn btn-secondary"> -->
 </div>

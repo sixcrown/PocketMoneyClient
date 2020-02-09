@@ -1,4 +1,4 @@
-export class Children
+export interface Children
 {
     id:any;
     userId:any;

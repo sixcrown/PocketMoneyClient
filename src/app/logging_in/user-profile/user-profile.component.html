@@ -1,12 +1,25 @@
-<div class="container">
-    <div class="row">
-        <div class="inner-main">
-            <h2 class="mb-4">User Profile</h2>
-            <br><br><br>
-            <p><strong>Username:</strong> {{this.currentUser.username}}</p>
-            <p><strong>Name:</strong> {{this.currentUser.name}}</p>
-            <p><strong>Surname:</strong> {{this.currentUser.surname}}</p>
-            <p><strong>Email:</strong> {{this.currentUser.email}}</p>
-        </div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">User Profile</h1>
+        <p><strong>Username:</strong> {{ this.currentUser.username }}</p>
+        <p><strong>Name:</strong> {{ this.currentUser.name }}</p>
+        <p><strong>Surname:</strong> {{ this.currentUser.surname }}</p>
+        <p><strong>Email:</strong> {{ this.currentUser.email }}</p>
+        <button class="btn btn-danger" (click)="Click()" *ngIf="this.click" type="button">
+            Change password
+        </button>
+        <div class="auth-wrapper" *ngIf="!this.click">
+            <form class="form-signin" [formGroup]="signupForm">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" formControlName="password"
+                                placeholder="Password"/>
+                        </div>
+                    </form></div>
+        <button class="btn btn-primary" (click)="submit()" *ngIf="!this.click" type="button">
+            Apply
+        </button>
+
+
     </div>
 </div>

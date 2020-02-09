@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './../../shared/auth.service'
 import {Children} from '../../entities/Children'
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {administrationUnits} from '../../entities/administrationUnits'
 import {educationLevels} from '../../entities/educationLevels'
-import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
 @Component({
   selector: 'app-get-my-children',
   templateUrl: './get-my-children.component.html',
@@ -14,6 +12,7 @@ import { map } from "rxjs/operators";
 })
 
 export class GetMyChildrenComponent implements OnInit {
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
   signinForm: FormGroup;
   showDetails:boolean = false
   addChildrenClicker:boolean = false
@@ -23,6 +22,8 @@ export class GetMyChildrenComponent implements OnInit {
   options =[]
   administrationUnit:administrationUnits[]
   educationLevel:educationLevels[]
+  selectedChildren: Children
+ 
 
   constructor(public authService: AuthService,private http: HttpClient,    public fb: FormBuilder,) 
 {    
@@ -45,6 +46,7 @@ export class GetMyChildrenComponent implements OnInit {
   readonly urlAddChild = 'http://localhost:8080/api/addChild';
   readonly ulrGetAdministrationUnits = 'http://localhost:8080/api/getAdministrationUnits'
   readonly urlGetEducationLevels = 'http://localhost:8080/api/getEducationLevels'
+  readonly urlDeleteChild = 'http://localhost:8080/api/deleteChild'
   Childrens:Children[]
   ngOnInit() {
     this.getMyChildren()
@@ -72,19 +74,29 @@ export class GetMyChildrenComponent implements OnInit {
     this.indexClicked = id
     console.log(this.indexClicked)
   }
-  ChildDelete()
+  ChildDelete(id)
   {
+    console.log(id)
+    this.http.delete(this.urlDeleteChild + '/' + id, { headers: this.headers })
+    .subscribe((res: any) =>
+     {
+      this.getMyChildren()
+     })
 
+  }
+  onSelect(Children:Children)
+  {
+    this.selectedChildren = Children;
   }
   submitNewKid()//:Observable<any>
   {
-    // return this.http.post(this.urlAddChild,this.signinForm.value)
-    // .pipe(map(reponse=>){    
-    //   (Error)=>window.alert("Nie udalo sie dodac dziecka")};
     this.addChildrenClicker = false;
     this.http.post(this.urlAddChild,this.signinForm.value).subscribe((data:any)=>{    
-    (error)=>window.alert("Nie udalo sie dodac dziecka")});
     this.getMyChildren()
+    }, error => {
+      window.alert("Nie udalo sie dodac dziecka")
+    });
+
   }
   getSexs() {
     return [
