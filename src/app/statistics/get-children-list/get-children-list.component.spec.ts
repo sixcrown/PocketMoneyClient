@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GetLevelsComponent } from './get-levels.component';
+import { GetChildrenListComponent } from './get-children-list.component';
 
-describe('GetLevelsComponent', () => {
-  let component: GetLevelsComponent;
-  let fixture: ComponentFixture<GetLevelsComponent>;
+describe('GetChildrenListComponent', () => {
+  let component: GetChildrenListComponent;
+  let fixture: ComponentFixture<GetChildrenListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GetLevelsComponent ]
+      declarations: [ GetChildrenListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GetLevelsComponent);
+    fixture = TestBed.createComponent(GetChildrenListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

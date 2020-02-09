@@ -19,7 +19,7 @@ import { GetChildrenComponent } from './admin/get-children/get-children.componen
 import { GetUsersComponent } from './admin/get-users/get-users.component';
 import { GetStatisticsAverageLevelComponent } from './statistics/get-statistics-average-level/get-statistics-average-level.component'
 import { EditChildrenComponent } from './user/edit-children/edit-children.component';
-import { GetLevelsComponent } from './statistics/get-statistics-average/get-levels/get-levels.component';
+import { GetChildrenListComponent } from './statistics/get-children-list/get-children-list.component'
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { GetLevelsComponent } from './statistics/get-statistics-average/get-leve
     GetUsersComponent,
     GetStatisticsAverageLevelComponent,
     EditChildrenComponent,
-    GetLevelsComponent,
+    GetChildrenListComponent
     
   ],
   imports: [
@@ -75,8 +75,12 @@ import { GetLevelsComponent } from './statistics/get-statistics-average/get-leve
       component:GetStatisticsAverageComponent, canActivate:[AuthGuard]
       },
       {
-        path: 'GetStatisticsAverageLevel',
+        path: 'GetStatisticsAverageLevel/:name',
         component:GetStatisticsAverageLevelComponent, canActivate:[AuthGuard]
+      },
+      {
+        path: 'GetChildrenList/:province/:name',
+        component:GetChildrenListComponent, canActivate:[AuthGuard]
       },
       {
         path: "getChildren",

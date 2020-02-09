@@ -1,4 +1,3 @@
-<level [province]="provinceName"></level>
 <style>
     body {
         background: white }
@@ -14,7 +13,7 @@
         margin-right: -50%;
         transform: translate(-50%, -50%) }
   </style>
-  <section *ngIf="this.show">
+  <section>
     
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
@@ -28,7 +27,12 @@
     <tbody>
         <tr *ngFor="let stat of stats">
             
-            <td><a (click)="getProvince(stat.name)" routerLinkActive="active" routerLink="/GetStatisticsAverageLevel" >{{stat.name}}</a></td>
+            <td>
+                <button class="btn btn-warning" [routerLink] ="['/GetStatisticsAverageLevel', stat.name]" 
+                routerLinkActive="active" type="button">
+                    {{stat.name}}
+                </button>
+            </td>
             <td>{{stat.value}}</td>
         </tr>
     </tbody>

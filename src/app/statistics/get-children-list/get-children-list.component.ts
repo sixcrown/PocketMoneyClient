@@ -1,39 +1,41 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NameFloatForTableDTO} from '../../entities/NameFloatForTableDTO'
+import { Children} from '../../entities/Children'
 import { HttpClient } from '@angular/common/http';
 import {educationLevels} from '../../entities/educationLevels'
 import {  Router, ActivatedRoute } from '@angular/router';
-
 @Component({
-  selector: 'level',
-  templateUrl: './get-statistics-average-level.component.html',
-  styleUrls: ['./get-statistics-average-level.component.css']
+  selector: 'app-get-children-list',
+  templateUrl: './get-children-list.component.html',
+  styleUrls: ['./get-children-list.component.css']
 })
-export class GetStatisticsAverageLevelComponent implements OnInit {
-  
-  province: string
-  stats:NameFloatForTableDTO[];
+export class GetChildrenListComponent implements OnInit {
+
+  provinceName: string
+  eduLevel: string
+  stats:Children[];
   readonly url = 'http://localhost:8080/api/getStatisticsAverage/'
-  
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
-    this.province = this.route.snapshot.paramMap.get('name')
-    console.log(this.province)
+    this.provinceName = this.route.snapshot.paramMap.get('province')
+    this.eduLevel = this.route.snapshot.paramMap.get('name')
+    console.log(this.provinceName)
     this.getStatAverageForLevel();
     
   }
   getStatAverageForLevel()
   {
-    this.http.get(this.url + this.province)
+    this.http.get(this.url + this.provinceName + '/' + this.eduLevel)
     .subscribe(
       (data:any)=>{
       this.stats=data;
       console.log(this.stats)
     })
-
-    
-  }
-  
+}
 
 }
+
+  
+  
+  
+
