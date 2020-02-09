@@ -15,19 +15,19 @@
         transform: translate(-50%, -50%) }
   </style>
   <section>
-      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
-        
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+   
     <table class="table table-trapped">
         <thead>
         <tr>
-            <th>Poziom kształcenia:</th>
-            <th>Kieszonkowe:</th>
+            <th><button (click)="sortByName()"  type="submit" class="btn">Poziom kształcenia</button></th>
+            <th> <button (click)="sortByValue()"  type="submit" class="btn">Kieszonkowe</button></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let stat of stats">
             <td>
-                <button class="btn btn-warning" [routerLink] ="['/GetChildrenList', this.province, stat.name]" 
+                <button class="btn" [routerLink] ="['/GetChildrenList', this.province, stat.name]" 
                 routerLinkActive="active" type="button">
                     {{stat.name}}
                 </button>

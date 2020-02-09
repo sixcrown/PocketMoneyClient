@@ -17,18 +17,20 @@
     
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
     <table class="table table-trapped">
         <thead>
         <tr>
-            <th>Miasto/województwo</th>
-            <th>Kieszonkowe:</th>
+            <th><button (click)="sortByName()"  type="submit" class="btn">Miasto/województwo</button></th>
+            <th> <button (click)="sortByValue()"  type="submit" class="btn">Kieszonkowe</button></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let stat of stats">
             
             <td>
-                <button class="btn btn-warning" [routerLink] ="['/GetStatisticsAverageLevel', stat.name]" 
+                <button class="btn" [routerLink] ="['/GetStatisticsAverageLevel', stat.name]" 
                 routerLinkActive="active" type="button">
                     {{stat.name}}
                 </button>

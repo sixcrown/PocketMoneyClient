@@ -19,7 +19,7 @@ export class GetStatisticsAverageComponent implements OnInit {
   ngOnInit() {
     this.stats= [];
     this.getStatAverageForCity();
-    this.show = true
+    this.sortByName()
   }
   getStatAverageForCity()
   {
@@ -37,4 +37,37 @@ export class GetStatisticsAverageComponent implements OnInit {
     this.show=false
   }
  
+ // tslint:disable-next-line: ban-types
+ name2: String;
+ // tslint:disable-next-line: ban-types
+ value2: Number;
+sortByName(){
+    for(let j = 0; j < this.stats.length - 1 ; ++j) {
+      for(let i = 0; i < this.stats.length - 1 ; ++i) {
+        if(this.stats[i].name.toLowerCase() > this.stats[i + 1].name.toLowerCase()){
+         this.name2 = this.stats[i].name;
+         this.value2 = this.stats[i].value;
+         this.stats[i].name = this.stats[i + 1].name;
+         this.stats[i].value = this.stats[i + 1].value;
+         this.stats[i + 1].name = this.name2;
+         this.stats[i + 1].value = this.value2;
+        }
+       }
+     }
+  }
+  sortByValue(){
+    for(let j = 0; j < this.stats.length - 1 ; ++j) {
+      for(let i = 0; i < this.stats.length - 1 ; ++i) {
+        if(this.stats[i].value > this.stats[i + 1].value){
+         this.name2 = this.stats[i].name;
+         this.value2 = this.stats[i].value;
+         this.stats[i].name = this.stats[i + 1].name;
+         this.stats[i].value = this.stats[i + 1].value;
+         this.stats[i + 1].name = this.name2;
+         this.stats[i + 1].value = this.value2;
+        }
+       }
+     }
+  }
+
 }
