@@ -16,7 +16,8 @@ import { HomeComponent } from './homescreen/home/home.component';
 import { GetMyChildrenComponent } from './user/get-my-children/get-my-children.component';
 import {GetStatisticsAverageComponent} from './statistics/get-statistics-average/get-statistics-average.component';
 import { GetChildrenComponent } from './admin/get-children/get-children.component';
-import { GetUsersComponent } from './admin/get-users/get-users.component'
+import { GetUsersComponent } from './admin/get-users/get-users.component';
+import { EditChildrenComponent } from './user/edit-children/edit-children.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { GetUsersComponent } from './admin/get-users/get-users.component'
     UserProfileComponent,
     GetStatisticsAverageComponent,
     GetChildrenComponent,
-    GetUsersComponent
+    GetUsersComponent,
+    EditChildrenComponent
   ],
   imports: [
     ReactiveFormsModule,

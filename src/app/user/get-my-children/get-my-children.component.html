@@ -1,84 +1,128 @@
-<style>
-    body {
-        background: white }
-    section {
-        background: white;
-        color: white;
-        border-radius: 1em;
-        padding: 1em;
-        position: absolute;
-        align-items: center;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%) }
-  </style>
-<section>
-<button (click)="addChildrenClick()" type="button">Dodaj Dziecko</button>
-<div class="auth-wrapper" *ngIf="this.addChildrenClicker">
-    <form class="form-signin" [formGroup]="signinForm">
-    <div class="form-group">
-    <label>pocketMoney</label>
-    <input type="pocketMoney" class="form-control"  formControlName="pocketMoney" placeholder="Kieszonkowe" required></div>
-    <div class="form-group">
-    <label>Opis</label>
-    <input type="username" class="form-control"  formControlName="description" placeholder="Opis" required> </div>
-    <div class="form-group">
-    <label for="sex">Płeć</label>
-    <select formControlName="sex" id="sex">
-    <option *ngFor="let sexs of sex;let i=index" [value]="sex[i].id">{{sex[i].name}}</option>
-    <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
-    </select> </div> 
-    <div class="form-group">
-    <label for="isLivingWithParents">Czy żyje z rodzicami?</label>
-    <select formControlName="isLivingWithParents" id="isLivingWithParents">
-    <option *ngFor="let option of options;let i=index" [value]="options[i].id">{{options[i].name}}</option>
-    <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
-    </select> </div> 
-    <div class="form-group">
-        <label for="administrationUnit">Miasto/Województwo</label>
-        <select formControlName="administrationUnit" id="administrationUnit">
-        <option *ngFor="let administrationUnits of administrationUnit;let i=index" [value]="administrationUnit[i].name">{{administrationUnit[i].name}}</option>
-        </select> </div> 
-        <div class="form-group">
-            <label for="educationLevel">Wykształcenie</label>
-            <select formControlName="educationLevel" id="educationLevel">
-            <option *ngFor="let educationLevels of educationLevel;let i=index" [value]="educationLevel[i].educationLevel">{{educationLevel[i].educationLevel}}</option>
-            </select> </div> 
-    </form></div>
-<!-- <button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
-<button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button> -->
-<br>
-<table class="table table-trapped"*ngIf="!this.addChildrenClicker">
-    <thead>
-    <tr>
-        <th>Id dziecka:</th>
-        <th>Kieszonkowe:</th>
-        <th>Płeć:</th>
-        <th>Czy zamieszkuje z rodzicami?:</th>
-        <th>Miasto/województwo:</th>
-        <th>Poziom edukacji:</th>
-        <th>Opis:</th>
-        <th></th>
-    </tr>
-</thead>
-<!-- <div class="form-group">
-    <label>Username</label>
-    <input type="username" class="form-control" formControlName="username" placeholder="Username" required> -->
-<!-- <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button> -->
-<tbody>
-    <tr *ngFor="let Children of Childrens;let i =index ">
-        <td>{{Children.id}} </td>
-        <td>{{Children.pocketMoney}}</td>
-        <td>{{Children.sex}}</td>
-        <td>{{Children.isLivingWithParents }} </td>
-        <td>{{Children.administrationUnit}}</td>
-        <td>{{Children.educationLevel }} </td>
-        <td>{{Children.description }} </td>
-        <td><button (click)="ChildDelete()" *ngIf="!this.childClicker" type="button">Usuń</button></td>
-        <td><button (click)="submit()" *ngIf="!this.childClicker" type="button">Edytuj</button></td>
-    </tr>
-</tbody>
-</table>
-<button (click)="submitNewKid()" *ngIf="this.addChildrenClicker" type="button">Apply</button>
-<button (click)="submitNewEditedKid()" *ngIf="this.childClicker" type="button">Apply</button>
+<div class="center">
+    <div class="container">
+        <button (click)="addChildrenClick()" class="btn btn-secondary" type="button">
+            Dodaj Dziecko
+        </button>
+        <div class="auth-wrapper" *ngIf="this.addChildrenClicker">
+            <form class="form-signin" [formGroup]="signinForm">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Kieszonkowe</label>
+                            <input type="pocketMoney" class="form-control" formControlName="pocketMoney"
+                                placeholder="Kieszonkowe" required />
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Opis</label>
+                            <input type="username" class="form-control" formControlName="description" placeholder="Opis"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="sex" class="text-dark">Płeć</label>
+                            <br />
+                            <select formControlName="sex" id="sex">
+                                <option *ngFor="let sexs of sex; let i = index" [value]="sex[i].id">{{ sex[i].name }}
+                                </option>
+                                <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="isLivingWithParents" class="text-dark">Czy żyje z rodzicami?</label>
+                            <br />
+                            <select formControlName="isLivingWithParents" id="isLivingWithParents">
+                                <option *ngFor="let option of options; let i = index" [value]="options[i].id">
+                                    {{ options[i].name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="administrationUnit" class="text-dark">Miasto/Województwo</label>
+                            <br />
+                            <select formControlName="administrationUnit" id="administrationUnit">
+                                <option *ngFor="
+                    let administrationUnits of administrationUnit;
+                    let i = index
+                  " [value]="administrationUnit[i].name">{{ administrationUnit[i].name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="educationLevel" class="text-dark">Wykształcenie</label>
+                            <br />
+                            <select formControlName="educationLevel" id="educationLevel">
+                                <option *ngFor="let educationLevels of educationLevel; let i = index"
+                                    [value]="educationLevel[i].educationLevel">{{ educationLevel[i].educationLevel }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+                </div>
+            </form>
+        </div>
+        <button (click)="submitNewKid()" class="btn btn-primary" *ngIf="this.addChildrenClicker" type="button">
+            Apply
+        </button>
+    </div>
+
+    <div class="container">
+        <table class="table table-trapped" *ngIf="!this.addChildrenClicker">
+            <thead>
+                <tr>
+                    <th>Id dziecka:</th>
+                    <th>Kieszonkowe:</th>
+                    <th>Płeć:</th>
+                    <th>Czy zamieszkuje z rodzicami?:</th>
+                    <th>Miasto/województwo:</th>
+                    <th>Poziom edukacji:</th>
+                    <th>Opis:</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <!-- <div class="form-group">
+            <label>Username</label>
+            <input type="username" class="form-control" formControlName="username" placeholder="Username" required> -->
+            <!-- <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button> -->
+
+            <tbody>
+                <tr *ngFor="let Children of Childrens" (click)="onSelect(Children)">
+                    <td>{{ Children.id }}</td>
+                    <td>{{ Children.pocketMoney }}</td>
+                    <td>{{ Children.sex }}</td>
+                    <td>{{ Children.isLivingWithParents }}</td>
+                    <td>{{ Children.administrationUnit }}</td>
+                    <td>{{ Children.educationLevel }}</td>
+                    <td>{{ Children.description }}</td>
+                    <td>
+                        <button class="btn btn-danger" (click)="ChildDelete(Children.id)" *ngIf="!this.childClicker"
+                            type="button">
+                            Usuń
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" (click)="submit()" *ngIf="!this.childClicker" type="button">
+                            Edytuj
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <button routerLink="/editChildren" routerLinkActive="active">Edytuj Dziecko</button>
+    <button routerLink="/usunDziecko" routerLinkActive="active">Usun Dziecko</button> -->
+    <!-- <button class="btn btn-secondary" (click)="submitNewEditedKid()" *ngIf="this.childClicker" type="button">Apply</button class="btn btn-secondary"> -->
+</div>
