@@ -113,7 +113,7 @@
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-warning" (click)="submit()" *ngIf="!this.childClicker" type="button">
+                        <button class="btn btn-warning" [routerLink] ="['/editChildren', Children.id]" routerLinkActive="active" *ngIf="!this.childClicker" type="button">
                             Edytuj
                         </button>
                     </td>

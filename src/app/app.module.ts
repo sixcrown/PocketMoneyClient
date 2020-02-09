@@ -72,6 +72,10 @@ import { EditChildrenComponent } from './user/edit-children/edit-children.compon
       {
         path: 'getUsers',
         component:GetUsersComponent, canActivate:[AuthAdminGuard]
+      },
+      {
+        path: "editChildren/:id",
+        component:EditChildrenComponent, canActivate:[AuthGuard]
       }
     ]),
 

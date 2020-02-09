@@ -1,1 +1,79 @@
-<p>edit-children works!</p>
+<div class="center">
+    <div class="container">
+        <button [routerLink] ="['/myChildren']" class="btn btn-secondary" routerLinkActive="active">Back</button>
+        <div class="auth-wrapper">
+            <form class="form-signin" [formGroup]="signinForm">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Kieszonkowe</label>
+                            <input type="pocketMoney" class="form-control" formControlName="pocketMoney"
+                                placeholder="Kieszonkowe" required />
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label>Opis</label>
+                            <input type="username" class="form-control" formControlName="description" placeholder="Opis"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="sex" class="text-dark">Płeć</label>
+                            <br />
+                            <select formControlName="sex" id="sex">
+                                <option *ngFor="let sexs of sex; let i = index" [value]="sex[i].id">{{ sex[i].name }}
+                                </option>
+                                <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="isLivingWithParents" class="text-dark">Czy żyje z rodzicami?</label>
+                            <br />
+                            <select formControlName="isLivingWithParents" id="isLivingWithParents">
+                                <option *ngFor="let option of options; let i = index" [value]="options[i].id">
+                                    {{ options[i].name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="administrationUnit" class="text-dark">Miasto/Województwo</label>
+                            <br />
+                            <select formControlName="administrationUnit" id="administrationUnit">
+                                <option *ngFor="
+                    let administrationUnits of administrationUnit;
+                    let i = index
+                  " [value]="administrationUnit[i].name">{{ administrationUnit[i].name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="educationLevel" class="text-dark">Wykształcenie</label>
+                            <br />
+                            <select formControlName="educationLevel" id="educationLevel">
+                                <option *ngFor="let educationLevels of educationLevel; let i = index"
+                                    [value]="educationLevel[i].educationLevel">{{ educationLevel[i].educationLevel }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <input type="username" class="form-control"  formControlName="sex" placeholder="Płeć" required>!-->
+                </div>
+            </form>
+        </div>
+        <button (click)="submit()" class="btn btn-primary" type="button">
+            Apply
+        </button>
+    </div>
+
+</div>

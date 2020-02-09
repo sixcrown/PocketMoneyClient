@@ -1,9 +1,10 @@
 <html>
-<div class="container" *ngIf="isLogged">
-  <style>
-    body {
-        background: white }
-    section {
+  <div class="container" *ngIf="isLogged">
+    <style>
+      body {
+        background: white;
+      }
+      section {
         background: black;
         color: white;
         border-radius: 1em;
@@ -13,42 +14,12 @@
         top: 50%;
         left: 50%;
         margin-right: -50%;
-        transform: translate(-50%, -50%) }
-  </style>
-  <section>
-    <h1>Średnia kieszonkowego w polsce:</h1>
-    <h1 class="display-1">{{this.money}}</h1>
-  </section>
-</div>
-<!-- <html lang="en"><head>
-
-  </head>
-
-  <body>
-
-
-      <div class="container-6">
-        <h1>Średnia kieszonkowego w całej polsce:<br></h1>
-        {{this.money}}
-      </div>
-
-
-
-
-</body></html> -->
-<!-- <table class="container-sm">
-<thead>
-    <tr>
-        <th>
-            <p class="text-center">Kieszonkowe w calej polsce:</p>
-        </th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <p class="text-center">
-        <h1 class="display-1">{{this.money}}</h1>
-    
-    </tr>
-</tbody>
- -->
+        transform: translate(-50%, -50%);
+      }
+    </style>
+    <section>
+      <h1>Średnia kieszonkowego w polsce:</h1>
+      <h1 class="display-1">{{ this.money }}</h1>
+    </section>
+  </div>
+</html>

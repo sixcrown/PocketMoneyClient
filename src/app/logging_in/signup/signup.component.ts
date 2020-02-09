@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['log-in']);
       },
       (error) =>{
-        this.signupForm.reset();
+        window.alert("Nie udalo sie stworzyc uzytkownika")
         this.router.navigate(['sign-up']);
       }
     )

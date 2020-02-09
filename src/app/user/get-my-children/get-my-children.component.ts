@@ -5,9 +5,6 @@ import {Children} from '../../entities/Children'
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {administrationUnits} from '../../entities/administrationUnits'
 import {educationLevels} from '../../entities/educationLevels'
-import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
-import {AuthInterceptor} from '../../shared/authconfig.interceptor'
 @Component({
   selector: 'app-get-my-children',
   templateUrl: './get-my-children.component.html',
