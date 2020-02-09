@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NameFloatForTableDTO} from '../../entities/NameFloatForTableDTO'
 import { HttpClient } from '@angular/common/http';
+import { Button } from 'protractor';
 
 @Component({
   selector: 'app-get-statistics-average',
@@ -9,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GetStatisticsAverageComponent implements OnInit {
   stats:NameFloatForTableDTO[];
-  readonly url = 'http://localhost:8080/api/getStatisticsAverage'
+  path:String = "/GetStatisticsAverageLevel/"
+  readonly url = 'http://localhost:8080/api/getStatisticsAverage/'
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -24,6 +26,11 @@ export class GetStatisticsAverageComponent implements OnInit {
       this.stats=data;
       console.log(this.stats)
     })
+
   }
 
+  getProvince(province:String) {
+    console.log(province)
+  }
+ 
 }
