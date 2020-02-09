@@ -1,1 +1,34 @@
-<p>get-users works!</p>
+<div class="center">
+    <div class="container">
+        <div class="container">
+            <table class="table table-trapped">
+                <thead>
+                    <tr>
+                        <th>Id użytkownika:</th>
+                        <th>Nazwa użytkownika:</th>
+                        <th>Email:</th>
+                        <th>Imię:</th>
+                        <th>Nazwisko:</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.surname }}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="Userdelete(user.id)"
+                                type="button">
+                                Usuń
+                            </button>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+    </div>
+
+</div></div>
