@@ -1,1 +1,43 @@
-<p>get-children works!</p>
+<div class="center">
+    <div class="container">
+        <div class="container">
+            <table class="table table-trapped" *ngIf="!this.addChildrenClicker">
+                <thead>
+                    <tr>
+                        <th>Id dziecka:</th>
+                        <th>Id użytkownika:</th>
+                        <th>Nazwa użytkownika:</th>
+                        <th>Kieszonkowe:</th>
+                        <th>Płeć:</th>
+                        <th>Czy zamieszkuje z rodzicami?:</th>
+                        <th>Miasto/województwo:</th>
+                        <th>Poziom edukacji:</th>
+                        <th>Opis:</th>
+                        <th></th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <tr *ngFor="let Children of Childrens" (click)="onSelect(Children)">
+                        <td>{{ Children.id }}</td>
+                        <td>{{ Children.userId }}</td>
+                        <td>{{ Children.user }}</td>
+                        <td>{{ Children.pocketMoney }}</td>
+                        <td>{{ Children.sex }}</td>
+                        <td>{{ Children.isLivingWithParents }}</td>
+                        <td>{{ Children.administrationUnit }}</td>
+                        <td>{{ Children.educationLevel }}</td>
+                        <td>{{ Children.description }}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="ChildDelete(Children.id)" *ngIf="!this.childClicker"
+                                type="button">
+                                Usuń
+                            </button>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+    </div>
+
+</div></div>
