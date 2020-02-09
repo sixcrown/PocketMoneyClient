@@ -51,6 +51,9 @@ export class AuthService {
           }
           );
             this.router.navigate(['home'])}
+      },error=>
+      {
+        window.alert('Nie udalo sie zalogowac')
       })
 
   }
