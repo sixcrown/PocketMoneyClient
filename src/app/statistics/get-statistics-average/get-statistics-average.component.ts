@@ -10,13 +10,16 @@ import { Button } from 'protractor';
 })
 export class GetStatisticsAverageComponent implements OnInit {
   stats:NameFloatForTableDTO[];
-  path:String = "/GetStatisticsAverageLevel/"
   readonly url = 'http://localhost:8080/api/getStatisticsAverage/'
   constructor(private http: HttpClient) { }
+
+  provinceName: string =""
+  show: boolean
 
   ngOnInit() {
     this.stats= [];
     this.getStatAverageForCity();
+    this.show = true
   }
   getStatAverageForCity()
   {
@@ -26,11 +29,12 @@ export class GetStatisticsAverageComponent implements OnInit {
       this.stats=data;
       console.log(this.stats)
     })
-
   }
 
-  getProvince(province:String) {
-    console.log(province)
+  getProvince(province:string) {
+    this.provinceName = province
+    console.log(this.provinceName)
+    this.show=false
   }
  
 }

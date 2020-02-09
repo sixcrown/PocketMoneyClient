@@ -1,3 +1,4 @@
+<level [province]="provinceName"></level>
 <style>
     body {
         background: white }
@@ -13,7 +14,8 @@
         margin-right: -50%;
         transform: translate(-50%, -50%) }
   </style>
-  <section>
+  <section *ngIf="this.show">
+    
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
     <table class="table table-trapped">
@@ -31,3 +33,4 @@
         </tr>
     </tbody>
     </table>
+    

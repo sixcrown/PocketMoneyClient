@@ -17,11 +17,10 @@ import { GetMyChildrenComponent } from './user/get-my-children/get-my-children.c
 import {GetStatisticsAverageComponent} from './statistics/get-statistics-average/get-statistics-average.component';
 import { GetChildrenComponent } from './admin/get-children/get-children.component';
 import { GetUsersComponent } from './admin/get-users/get-users.component';
-<<<<<<< HEAD
 import { GetStatisticsAverageLevelComponent } from './statistics/get-statistics-average-level/get-statistics-average-level.component'
-=======
-import { EditChildrenComponent } from './user/edit-children/edit-children.component'
->>>>>>> 96b8b72c960717494a6d55f93567cb6aee0dd438
+import { EditChildrenComponent } from './user/edit-children/edit-children.component';
+import { GetLevelsComponent } from './statistics/get-statistics-average/get-levels/get-levels.component';
+
 
 @NgModule({
   declarations: [
@@ -35,11 +34,10 @@ import { EditChildrenComponent } from './user/edit-children/edit-children.compon
     GetStatisticsAverageComponent,
     GetChildrenComponent,
     GetUsersComponent,
-<<<<<<< HEAD
-    GetStatisticsAverageLevelComponent
-=======
-    EditChildrenComponent
->>>>>>> 96b8b72c960717494a6d55f93567cb6aee0dd438
+    GetStatisticsAverageLevelComponent,
+    EditChildrenComponent,
+    GetLevelsComponent,
+    
   ],
   imports: [
     ReactiveFormsModule,
