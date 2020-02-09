@@ -19,7 +19,7 @@ export class GetStatisticsAverageComponent implements OnInit {
   ngOnInit() {
     this.stats= [];
     this.getStatAverageForCity();
-    this.sortByName()
+
   }
   getStatAverageForCity()
   {
@@ -28,6 +28,7 @@ export class GetStatisticsAverageComponent implements OnInit {
       (data:any)=>{
       this.stats=data;
       console.log(this.stats)
+      this.sortByName()
     })
   }
 
